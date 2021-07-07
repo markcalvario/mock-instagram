@@ -10,6 +10,7 @@
 #import "SceneDelegate.h"
 #import "PostCell.h"
 #import "Post.h"
+#import "PostDetailViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *arrayOfPosts;
@@ -72,8 +73,6 @@
     Post *post = self.arrayOfPosts[indexPath.row];
     
     //cell.author.usernameLabel = post.author.username;
-   
-    
     PFFileObject *userImageFile = post.image;
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
@@ -90,14 +89,26 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if (([segue.identifier isEqualToString:@"HomeToDetailPage"])) {
+        
+        PostCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.postsTableView indexPathForCell:tappedCell];
+        Post *post = self.arrayOfPosts[indexPath.row];
+        
+        PostDetailViewController *postDetailViewController = [segue destinationViewController];
+        postDetailViewController.post = post;
+    }
+    
+    
 }
-*/
+
 
 @end
