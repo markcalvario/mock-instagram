@@ -69,8 +69,8 @@
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *homeFeedViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedNavigationController"];
-    myDelegate.window.rootViewController = homeFeedViewController;
+    UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"LoginToTabBar"];
+    myDelegate.window.rootViewController = tabBarController;
 }
 
 /*
