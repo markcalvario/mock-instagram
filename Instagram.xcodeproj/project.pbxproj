@@ -23,6 +23,7 @@
 		D09FFD332694F3BC008B33B5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD322694F3BC008B33B5 /* LoginViewController.m */; };
 		D09FFD362694F911008B33B5 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD352694F911008B33B5 /* HomeFeedViewController.m */; };
 		D09FFD392695110D008B33B5 /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD382695110D008B33B5 /* PhotoMapViewController.m */; };
+		D09FFD4026951FE3008B33B5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD3F26951FE3008B33B5 /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		D09FFD352694F911008B33B5 /* HomeFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeFeedViewController.m; sourceTree = "<group>"; };
 		D09FFD372695110D008B33B5 /* PhotoMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoMapViewController.h; sourceTree = "<group>"; };
 		D09FFD382695110D008B33B5 /* PhotoMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoMapViewController.m; sourceTree = "<group>"; };
+		D09FFD3E26951FE3008B33B5 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		D09FFD3F26951FE3008B33B5 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		DADA7BE50F2B995E43001755 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E0AE108F717F8FFCD6FD0B7B /* Pods-Instagram-InstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ECBCD78F81DD24F2112C6E51 /* Pods_InstagramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +158,7 @@
 		D09FFCF82694E7E2008B33B5 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				D09FFD3A26951D7A008B33B5 /* Models */,
 				D09FFD302694F3A6008B33B5 /* View Controllers */,
 				D09FFCF92694E7E2008B33B5 /* AppDelegate.h */,
 				D09FFCFA2694E7E2008B33B5 /* AppDelegate.m */,
@@ -201,6 +205,15 @@
 				D09FFD382695110D008B33B5 /* PhotoMapViewController.m */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D09FFD3A26951D7A008B33B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D09FFD3E26951FE3008B33B5 /* Post.h */,
+				D09FFD3F26951FE3008B33B5 /* Post.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +461,7 @@
 				D09FFD392695110D008B33B5 /* PhotoMapViewController.m in Sources */,
 				D09FFCFE2694E7E2008B33B5 /* SceneDelegate.m in Sources */,
 				D09FFD332694F3BC008B33B5 /* LoginViewController.m in Sources */,
+				D09FFD4026951FE3008B33B5 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

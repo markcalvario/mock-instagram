@@ -6,6 +6,7 @@
 //
 
 #import "PhotoMapViewController.h"
+#import "Post.h"
 #import "SceneDelegate.h"
 
 @interface PhotoMapViewController ()
@@ -49,6 +50,22 @@
     
 }
 - (IBAction)didTapCancel:(id)sender {
+    [self backToHomeScreen];
+}
+- (IBAction)didTapShare:(id)sender {
+    NSString *caption = self.captionField.text;
+    UIImage *image = self.imagePostView.image;
+    [Post postUserImage:image withCaption:caption withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error == nil){
+            [self backToHomeScreen];
+        }
+        else{
+            NSLog(@"Error with posting");
+        }
+    }];
+}
+
+-(void) backToHomeScreen{
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

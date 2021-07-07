@@ -139,7 +139,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0B-h7-xkR">
                                 <rect key="frame" x="0.0" y="92" width="393" height="770"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOa-xP-256">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOa-xP-256" customClass="PFImageView">
                                         <rect key="frame" x="20" y="20" width="150" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="25f-q9-n68"/>
@@ -187,6 +187,9 @@
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Share"/>
+                                <connections>
+                                    <action selector="didTapShare:" destination="vjd-5P-Ms6" eventType="touchUpInside" id="dIV-b8-3jI"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
