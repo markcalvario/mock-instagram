@@ -8,8 +8,12 @@
 #import "HomeFeedViewController.h"
 #import "Parse/Parse.h"
 #import "SceneDelegate.h"
+#import "PostCell.h"
+#import "Post.h"
 
-@interface HomeFeedViewController ()
+@interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) NSArray *arrayOfPosts;
+@property (weak, nonatomic) IBOutlet UITableView *postsTableView;
 
 @end
 
@@ -17,9 +21,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.postsTableView.dataSource = self;
+    self.postsTableView.delegate = self;
+    [self getPosts];
 }
+- (void) getPosts{
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
 
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            self.arrayOfPosts = posts;
+            NSLog(@"%@", posts);
+            [self.postsTableView reloadData];
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
 - (IBAction)didTapLogOut:(id)sender {
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
 
@@ -30,6 +52,30 @@
         // PFUser.current() will now be nil
     }];
 }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.arrayOfPosts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    
+    Post *post = self.arrayOfPosts[indexPath.row];
+    
+    PFFileObject *userImageFile = post.image;
+    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:imageData];
+            [cell.imagePost setImage:image];
+        }
+    }];
+    cell.captionLabel.text = post.caption;
+    
+    return cell;
+    
+}
+
+
 
 
 /*
