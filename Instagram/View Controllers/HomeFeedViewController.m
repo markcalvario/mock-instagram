@@ -42,7 +42,6 @@
         if (posts != nil) {
             // do something with the array of object returned by the call
             self.arrayOfPosts = posts;
-            NSLog(@"%@", posts);
             [self.postsTableView reloadData];
             [self.refreshControl endRefreshing];
             
