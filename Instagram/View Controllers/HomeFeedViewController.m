@@ -14,6 +14,7 @@
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *arrayOfPosts;
 @property (weak, nonatomic) IBOutlet UITableView *postsTableView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -23,11 +24,17 @@
     [super viewDidLoad];
     self.postsTableView.dataSource = self;
     self.postsTableView.delegate = self;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getPosts) forControlEvents:UIControlEventValueChanged];
+    [self.postsTableView insertSubview:self.refreshControl atIndex:0];
     [self getPosts];
 }
 - (void) getPosts{
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = 20;
 
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -36,11 +43,13 @@
             self.arrayOfPosts = posts;
             NSLog(@"%@", posts);
             [self.postsTableView reloadData];
+            [self.refreshControl endRefreshing];
             
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    
 }
 - (IBAction)didTapLogOut:(id)sender {
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
@@ -61,6 +70,9 @@
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
     Post *post = self.arrayOfPosts[indexPath.row];
+    
+    //cell.author.usernameLabel = post.author.username;
+   
     
     PFFileObject *userImageFile = post.image;
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
