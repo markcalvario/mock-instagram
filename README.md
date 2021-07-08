@@ -23,7 +23,7 @@ The following **optional** features are implemented:
 - [] Show the username and creation time for each post
 - [X] User can use a Tab Bar to switch between a Home Feed tab (all posts) and a Profile tab (only posts published by the current user)
 - User Profiles:
-  - [ ] Allow the logged in user to add a profile photo
+  - [X] Allow the logged in user to add a profile photo
   - [X] Display the profile photo with each post
   - [ ] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse

@@ -73,6 +73,22 @@
     
     //cell.author.usernameLabel = post.author.username;
     PFFileObject *userImageFile = post.image;
+    cell.usernameLabel.text = post.author.username;
+    
+    [post.author fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        post.author = (PFUser *) object;
+        PFFileObject *userImageFile = post.author[@"profilePicture"];
+        [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                [cell.userProfileImage setImage:image];
+                cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
+                cell.userProfileImage.clipsToBounds = YES;
+                
+            }
+        }];
+    }];
+    
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:imageData];
@@ -80,6 +96,7 @@
         }
     }];
     cell.captionLabel.text = post.caption;
+    
     
     return cell;
     

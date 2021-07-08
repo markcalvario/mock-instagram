@@ -9,8 +9,9 @@
 #import "Parse/Parse.h"
 #import "PostCollectionCell.h"
 #import "Post.h"
+#import "PostDetailViewController.h"
 
-@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) PFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -25,8 +26,26 @@
     [super viewDidLoad];
     self.postsCollectionView.delegate = self;
     self.postsCollectionView.dataSource = self;
+    
+    /// Getting current user & setting the profile details based on the user's attributes
     self.user = [PFUser currentUser];
+    [self.user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        self.user = (PFUser *) object;
+        PFFileObject *userImageFile = self.user[@"profilePicture"];
+        [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                [self.userProfileImage setImage:image];
+                
+            }
+        }];
+    }];
+    
     self.usernameLabel.text = self.user.username;
+    
+    
+    
+    
     // Do any additional setup after loading the view.
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.postsCollectionView.collectionViewLayout;
     layout.minimumLineSpacing = 3;
@@ -43,6 +62,7 @@
     PostCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionCell" forIndexPath:indexPath];
     
     Post *post = self.arrayOfPosts[indexPath.row];
+    
     PFFileObject *userImageFile = post.image;
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
@@ -63,6 +83,8 @@
 //Getting User's posts
 - (void) getUsersPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query includeKey:@"author"];
+    [query orderByDescending:@"createdAt"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
 
     // fetch data asynchronously
@@ -77,15 +99,80 @@
     }];
     
 }
+- (IBAction)didTapEditProfilePicture:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+
+    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
+}
+/// method that saves profile picture to the user
+- (void) saveProfilePicture{
+    UIImage *image = self.userProfileImage.image;
+    self.user[@"profilePicture"] = [Post getPFFileFromImage: [self resizeImage: image withSize: CGSizeMake(300, 300)]];
+    
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error){
+            NSLog(@"could not save image");
+        }
+        else{
+            NSLog(@"Image saved");
+        }
+    }];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    // Get the image captured by the UIImagePickerController
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    //UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+
+    // Do something with the images (based on your use case)
+    [self.userProfileImage setImage:originalImage];
+    [self saveProfilePicture];
+    
+    // Dismiss UIImagePickerController to go back to your original view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if (([segue.identifier isEqualToString:@"OwnProfileToPostDetail"])) {
+        
+        PostCollectionCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.postsCollectionView indexPathForCell:tappedCell];
+        Post *post = self.arrayOfPosts[indexPath.row];
+        
+        PostDetailViewController *postDetailViewController = [segue destinationViewController];
+        postDetailViewController.post = post;
+    }
 }
-*/
+
 @end

@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 //Methods
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
++ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 
 
 @end
