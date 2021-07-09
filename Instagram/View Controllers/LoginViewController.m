@@ -20,6 +20,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+- (IBAction)didTapExitKeyboard:(id)sender {
+    [self.view endEditing:true];
+}
 - (IBAction)didTapLogin:(id)sender {
     NSString *username = self.usernameLabel.text;
     NSString *password = self.passwordLabel.text;
