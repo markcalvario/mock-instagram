@@ -28,6 +28,8 @@
 		D09FFD47269646FC008B33B5 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD46269646FC008B33B5 /* PostDetailViewController.m */; };
 		D09FFD4A2696599F008B33B5 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD492696599F008B33B5 /* ProfileViewController.m */; };
 		D09FFD4D2696661F008B33B5 /* PostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD4C2696661F008B33B5 /* PostCollectionCell.m */; };
+		D09FFD5026979D70008B33B5 /* OtherUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD4F26979D70008B33B5 /* OtherUserProfileViewController.m */; };
+		D09FFD532697BBB5008B33B5 /* PostCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FFD522697BBB5008B33B5 /* PostCellHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,10 @@
 		D09FFD492696599F008B33B5 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		D09FFD4B2696661F008B33B5 /* PostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCollectionCell.h; sourceTree = "<group>"; };
 		D09FFD4C2696661F008B33B5 /* PostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCollectionCell.m; sourceTree = "<group>"; };
+		D09FFD4E26979D70008B33B5 /* OtherUserProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherUserProfileViewController.h; sourceTree = "<group>"; };
+		D09FFD4F26979D70008B33B5 /* OtherUserProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherUserProfileViewController.m; sourceTree = "<group>"; };
+		D09FFD512697BBB5008B33B5 /* PostCellHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCellHeader.h; sourceTree = "<group>"; };
+		D09FFD522697BBB5008B33B5 /* PostCellHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCellHeader.m; sourceTree = "<group>"; };
 		DADA7BE50F2B995E43001755 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E0AE108F717F8FFCD6FD0B7B /* Pods-Instagram-InstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ECBCD78F81DD24F2112C6E51 /* Pods_InstagramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +226,8 @@
 				D09FFD46269646FC008B33B5 /* PostDetailViewController.m */,
 				D09FFD482696599F008B33B5 /* ProfileViewController.h */,
 				D09FFD492696599F008B33B5 /* ProfileViewController.m */,
+				D09FFD4E26979D70008B33B5 /* OtherUserProfileViewController.h */,
+				D09FFD4F26979D70008B33B5 /* OtherUserProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -240,6 +248,8 @@
 				D09FFD43269533D5008B33B5 /* PostCell.m */,
 				D09FFD4B2696661F008B33B5 /* PostCollectionCell.h */,
 				D09FFD4C2696661F008B33B5 /* PostCollectionCell.m */,
+				D09FFD512697BBB5008B33B5 /* PostCellHeader.h */,
+				D09FFD522697BBB5008B33B5 /* PostCellHeader.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -493,6 +503,8 @@
 				D09FFD4A2696599F008B33B5 /* ProfileViewController.m in Sources */,
 				D09FFD4D2696661F008B33B5 /* PostCollectionCell.m in Sources */,
 				D09FFD332694F3BC008B33B5 /* LoginViewController.m in Sources */,
+				D09FFD5026979D70008B33B5 /* OtherUserProfileViewController.m in Sources */,
+				D09FFD532697BBB5008B33B5 /* PostCellHeader.m in Sources */,
 				D09FFD4026951FE3008B33B5 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
