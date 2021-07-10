@@ -46,19 +46,19 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://user-images.githubusercontent.com/58496944/125149483-24d96f80-e0ee-11eb-95f9-98d29f025b21.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149483-24d96f80-e0ee-11eb-95f9-98d29f025b21.gif' title='Video Walkthrough' width='500' alt='Video Walkthrough' />
 
-<img src='https://user-images.githubusercontent.com/58496944/125149533-6c5ffb80-e0ee-11eb-976d-7af823b0e1b9.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149533-6c5ffb80-e0ee-11eb-976d-7af823b0e1b9.gif' title='Video Walkthrough' width='500' alt='Video Walkthrough' />
 
-<img src='https://user-images.githubusercontent.com/58496944/125149584-a6310200-e0ee-11eb-84ad-35c9d53a610a.gif' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149584-a6310200-e0ee-11eb-84ad-35c9d53a610a.gif' width='500' alt='Video Walkthrough' />
 
-<img src='https://user-images.githubusercontent.com/58496944/125149620-e09a9f00-e0ee-11eb-8627-14d95d74e82b.gif' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149620-e09a9f00-e0ee-11eb-8627-14d95d74e82b.gif' width='500' alt='Video Walkthrough' />
 
-<img src='https://user-images.githubusercontent.com/58496944/125149656-1b9cd280-e0ef-11eb-8ecb-57a37e69d83c.gif' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149656-1b9cd280-e0ef-11eb-8ecb-57a37e69d83c.gif' width='500' alt='Video Walkthrough' />
 
-<img src='https://user-images.githubusercontent.com/58496944/125149792-e8a70e80-e0ef-11eb-90d7-6d4169f59d67.gif' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149792-e8a70e80-e0ef-11eb-90d7-6d4169f59d67.gif' width='500' alt='Video Walkthrough' />
 
-<img src='https://user-images.githubusercontent.com/58496944/125149824-2c017d00-e0f0-11eb-8f9f-6a25aa5d58d0.gif' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149824-2c017d00-e0f0-11eb-8f9f-6a25aa5d58d0.gif' width='500' alt='Video Walkthrough' />
 
 
 
