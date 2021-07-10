@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
 @property (weak, nonatomic) IBOutlet UICollectionView *postsCollectionView;
 @property (strong, nonatomic) NSArray *arrayOfPosts;
+@property (strong, nonatomic) UIAlertController *alert;
 
 @end
 
@@ -104,16 +105,38 @@
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
 
-    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+    self.alert = [UIAlertController alertControllerWithTitle:@"Select a photo" message:@""
+                               preferredStyle:UIAlertControllerStyleActionSheet];
 
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertAction *didSelectCamera = [UIAlertAction actionWithTitle:@"Camera"
+                                                      style:UIAlertActionStyleDefault
+                                          
+                                    handler:^(UIAlertAction * _Nonnull action) {
+                                           // handle cancel response here. Doing nothing will dismiss the view.
+                                        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePickerVC animated:YES completion:nil];
+                                        
+                            }];
+        [self.alert addAction:didSelectCamera];
+    }
+    
+    
+    UIAlertAction *didSelectCameraRoll = [UIAlertAction actionWithTitle:@"Camera Roll"
+                                                  style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * _Nonnull action) {
+                                       // handle cancel response here. Doing nothing will dismiss the view.
+                                    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                    [self presentViewController:imagePickerVC animated:YES completion:nil];
+        
+                                }];
+    [self.alert addAction:didSelectCameraRoll];
+ 
+    [self presentViewController:self.alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
+    
     
 }
 /// method that saves profile picture to the user
