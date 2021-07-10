@@ -12,8 +12,8 @@
 #import "Post.h"
 #import "PostDetailViewController.h"
 #import "OtherUserProfileViewController.h"
+#import <DateTools.h>
 
-#import "PostCellHeader.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *arrayOfPosts;
@@ -122,6 +122,12 @@
         }
     }];
     cell.captionLabel.text = post.caption;
+    
+    NSDate *date = post.createdAt;
+    // Convert Date to String
+    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:date];
+    NSDate *timeAgoDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
+    cell.createdAtLabel.text = timeAgoDate.timeAgoSinceNow;
     
     
     return cell;

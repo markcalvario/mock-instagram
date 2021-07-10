@@ -10,30 +10,71 @@
 #import "SceneDelegate.h"
 
 @interface PhotoMapViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *imagePostView;
+@property (weak, nonatomic) IBOutlet UIButton *imagePostButton;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
-
+@property (strong, nonatomic) UIAlertController *alert;
+@property (strong, nonatomic) UIImage *imagePlaceHolder;
 @end
 
 @implementation PhotoMapViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
+    //self.imagePlaceHolder = self.imagePostView.image;
+    [self showPhotoAlert];
+}
+- (IBAction)didTapGestureToCancel:(id)sender {
+   
+}
+-(void) exitAlert{
+    [self dismissViewControllerAnimated: YES
+                                 completion: nil];
+}
+- (void)showPhotoAlert {
+    // Add code to be run periodically
+     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+     imagePickerVC.delegate = self;
+     imagePickerVC.allowsEditing = YES;
 
-    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+     self.alert = [UIAlertController alertControllerWithTitle:@"Select a photo" message:@""
+                                preferredStyle:UIAlertControllerStyleActionSheet];
 
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
+     
+     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+         UIAlertAction *didSelectCamera = [UIAlertAction actionWithTitle:@"Camera"
+                                                       style:UIAlertActionStyleDefault
+                                           
+                                     handler:^(UIAlertAction * _Nonnull action) {
+                                            // handle cancel response here. Doing nothing will dismiss the view.
+                                         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+             [self presentViewController:imagePickerVC animated:YES completion:nil];
+                                         
+                             }];
+         [self.alert addAction:didSelectCamera];
+     }
+     
+     
+     UIAlertAction *didSelectCameraRoll = [UIAlertAction actionWithTitle:@"Camera Roll"
+                                                   style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                        // handle cancel response here. Doing nothing will dismiss the view.
+                                     imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                     [self presentViewController:imagePickerVC animated:YES completion:nil];
+         
+                                 }];
+     [self.alert addAction:didSelectCameraRoll];
+  
+     [self presentViewController:self.alert animated:YES completion:^{
+         // optional code for what happens after the alert controller has finished presenting
+     }];
+     
+     
+   
+}
+- (IBAction)didTapSelectPhoto:(id)sender {
+    [self showPhotoAlert];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -42,7 +83,7 @@
     //UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    [self.imagePostView setImage:originalImage];
+    [self.imagePostButton setImage:originalImage forState:UIControlStateNormal];
     
     
     // Dismiss UIImagePickerController to go back to your original view controller
@@ -54,7 +95,7 @@
 }
 - (IBAction)didTapShare:(id)sender {
     NSString *caption = self.captionField.text;
-    UIImage *image = self.imagePostView.image;
+    UIImage *image = self.imagePostButton.currentImage;
     [Post postUserImage:image withCaption:caption withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error == nil){
             [self backToHomeScreen];

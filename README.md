@@ -20,7 +20,7 @@ The following **optional** features are implemented:
 
 - [X] Run your app on your phone and use the camera to take the photo
 - [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
-- [] Show the username and creation time for each post
+- [X] Show the username and creation time for each post
 - [X] User can use a Tab Bar to switch between a Home Feed tab (all posts) and a Profile tab (only posts published by the current user)
 - User Profiles:
   - [X] Allow the logged in user to add a profile photo

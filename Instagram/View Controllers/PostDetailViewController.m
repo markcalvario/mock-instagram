@@ -11,9 +11,11 @@
 
 @interface PostDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
+@property (weak, nonatomic) IBOutlet UIButton *userProfilePicButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *usernameButton;
 
 
 @end
@@ -31,7 +33,8 @@
         }
     }];
     self.captionLabel.text = self.post.caption;
-    self.usernameLabel.text = self.post.author.username;
+    [self.usernameButton setTitle:self.post.author.username forState:UIControlStateNormal];
+    
     
     
     NSDate *date = self.post.createdAt;
@@ -40,8 +43,35 @@
     NSDate *timeAgoDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
     self.timestampLabel.text = timeAgoDate.timeAgoSinceNow;
     
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
+        [self.usernameButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    else{
+        [self.usernameButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    }
+    
+    [self.post.author fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        self.post.author = (PFUser *) object;
+        PFFileObject *userImageFile = self.post.author[@"profilePicture"];
+        [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                NSLog(@"%@", image);
+                [self.userProfilePicButton setImage:image forState:UIControlStateNormal];
+                self.userProfilePicButton.layer.cornerRadius = self.userProfilePicButton.frame.size.width / 2;
+                self.userProfilePicButton.clipsToBounds = YES;
+                
+            }
+        }];
+    }];
     
     
+    
+    
+}
+- (IBAction)didTapUserProfilePic:(id)sender {
+    NSLog(@"%@", @"hello");
     
 }
 

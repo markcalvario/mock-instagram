@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *userProfilePicButton;
 @property (weak, nonatomic) IBOutlet UIButton *usernameButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
 
 
 @end
