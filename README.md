@@ -28,9 +28,9 @@ The following **optional** features are implemented:
   - [X] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
-- [ ] User can like a post and see number of likes for each post in the post details screen.
+- [X] User can like a post and see number of likes for each post in the post details screen.
 - [X] Style the login page to look like the real Instagram login page.
-- [ ] Style the feed to look like the real Instagram feed.
+- [X] Style the feed to look like the real Instagram feed.
 - [ ] Implement a custom camera view.
 
 The following **additional** features are implemented:
@@ -46,9 +46,20 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/58496944/125149483-24d96f80-e0ee-11eb-95f9-98d29f025b21.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Kap](https://getkap.co/).
+<img src='https://user-images.githubusercontent.com/58496944/125149533-6c5ffb80-e0ee-11eb-976d-7af823b0e1b9.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+<img src='https://user-images.githubusercontent.com/58496944/125149584-a6310200-e0ee-11eb-84ad-35c9d53a610a.gif' width='' alt='Video Walkthrough' />
+
+<img src='https://user-images.githubusercontent.com/58496944/125149620-e09a9f00-e0ee-11eb-8627-14d95d74e82b.gif' width='' alt='Video Walkthrough' />
+
+<img src='https://user-images.githubusercontent.com/58496944/125149656-1b9cd280-e0ef-11eb-8ecb-57a37e69d83c.gif' width='' alt='Video Walkthrough' />
+
+
+
+
+
 
 ## Credits
 
