@@ -114,6 +114,10 @@
     [cell.userProfilePicButton addTarget:self action:@selector(goToProfile:) forControlEvents:UIControlEventTouchUpInside];
     
     
+    cell.likedButton.tag = indexPath.row;
+    [cell.likedButton addTarget:self action:@selector(didTapLikeIcon:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
@@ -130,6 +134,14 @@
     cell.createdAtLabel.text = timeAgoDate.timeAgoSinceNow;
     
     
+    NSString *likesCountString = [post.likeCount stringValue];
+    NSString *likesLabelText = [likesCountString stringByAppendingString:@" likes"];
+    cell.likesCountLabel.text = likesLabelText;
+    
+    //if ([cell.likedButton currentImage])
+    UIImage *currentLikeIcon = [cell.likedButton currentImage];
+    
+    //NSLog(@"%@", [currentLikeIcon imageWithData]);
     return cell;
     
 }
@@ -138,7 +150,48 @@
 -(void) goToProfile:(UIButton*)sender {
     Post *post = self.arrayOfPosts[sender.tag];
     [self performSegueWithIdentifier:@"HomeToOtherUser" sender:post];
+}
+///When user hits like
+-(void) didTapLikeIcon:(UIButton*)sender {
+    Post *post = self.arrayOfPosts[sender.tag];
+    PFUser *currentUser = [PFUser currentUser];
     
+    NSSet *setOfLikedPosts =  currentUser[@"setOfLikedPosts"];
+    
+    if (![setOfLikedPosts containsObject:post]){
+        [self updateLikesAmount:TRUE postToUpdate:post];
+        [currentUser addUniqueObject:post forKey:@"setOfLikedPosts"];
+    }
+    else{
+        [self updateLikesAmount:FALSE postToUpdate:post];
+        [currentUser removeObject:post forKey:@"setOfLikedPosts"];
+    }
+    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error){
+            NSLog(@"could not save image");
+        }
+        else{
+            NSLog(@"Image saved");
+        }
+    }];
+    
+}
+
+
+-(void) updateLikesAmount: (BOOL) isCountIncreasing postToUpdate: (Post *)post{
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    NSString *id = post.objectId;
+    [query getObjectInBackgroundWithId: id
+                                 block:^(PFObject *postObject, NSError *error) {
+        if (isCountIncreasing){
+            [postObject incrementKey:@"likeCount" byAmount:@(1)];
+        }
+        else{
+            [postObject incrementKey:@"likeCount" byAmount:@-1];
+        }
+        [postObject saveInBackground];
+    }];
+
 }
 #pragma mark - Navigation
 

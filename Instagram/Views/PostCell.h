@@ -15,9 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *userProfilePicButton;
 @property (weak, nonatomic) IBOutlet UIButton *usernameButton;
+@property (weak, nonatomic) IBOutlet UIButton *likedButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
-
+@property (nonatomic, strong) PFUser *user;
+@property (weak, nonatomic) IBOutlet UILabel *likesCountLabel;
 
 @end
 
