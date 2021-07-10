@@ -2,7 +2,7 @@
 
 **Instagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **25** hours spent in total
 
 ## User Stories
 
@@ -55,6 +55,10 @@ Here's a walkthrough of implemented user stories:
 <img src='https://user-images.githubusercontent.com/58496944/125149620-e09a9f00-e0ee-11eb-8627-14d95d74e82b.gif' width='' alt='Video Walkthrough' />
 
 <img src='https://user-images.githubusercontent.com/58496944/125149656-1b9cd280-e0ef-11eb-8ecb-57a37e69d83c.gif' width='' alt='Video Walkthrough' />
+
+<img src='https://user-images.githubusercontent.com/58496944/125149792-e8a70e80-e0ef-11eb-90d7-6d4169f59d67.gif' width='' alt='Video Walkthrough' />
+
+<img src='https://user-images.githubusercontent.com/58496944/125149824-2c017d00-e0f0-11eb-8f9f-6a25aa5d58d0.gif' width='' alt='Video Walkthrough' />
 
 
 
